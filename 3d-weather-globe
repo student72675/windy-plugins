@@ -1,0 +1,19 @@
+// create a map, with streets as the basemap
+var map = new Map({
+  basemap: 'streets',
+  ground: "world-elevation"
+}); 
+// create a 3d globe SceneView and add the map to the globe
+var view = new SceneView({
+  container: "viewDiv",
+  map: map,
+  scale: 40345678,
+  center: [-96,40]
+});
+var weatherLayer = new WebTileLayer({
+  urlTemplate: "http://maps{subDomain}.windyapi.com/[CLIENTID]_[ACCESSKEY]/[MAPLAYER]/{level}/{col}/{row}/current.png",
+  subDomains: ["1", "2", "3", "4"],
+  copyright:
+    'Weather Layers by <a href="http://windy.com/">windy.com</a>, '
+});
+map.add(weatherLayer);
